@@ -14,6 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/tes', function (Request $request) {
+//         $response = [
+//             "message" => "Testing Successfull",
+//             "tes" => "YEAAH",
+//         ];
+//         dd($response);
+//         return response()->json($response, 200);
+//     })->name('api.test');
+// });
+
+Route::get('/tes', function (Request $request) {
+    $user = $request->user();
+    $response = [
+        "user" => $user,
+        "message" => "Testing Successfull",
+        "tes" => "YEAAH",
+    ];
+    return response()->json($response, 200);
+})->name('api.test');
