@@ -33,6 +33,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get(uri: '/beranda', action: function () {
+        return Inertia::render(component: 'Dashboard/Beranda');
+    })->name('beranda');
+
+    Route::get(uri: '/eksplor', action: function () {
+        return Inertia::render(component: 'Dashboard/Eksplor');
+    })->name('eksplor');
+    
+    Route::get(uri: '/hasil-analisis', action: function () {
+        return Inertia::render(component: 'Dashboard/HasilAnalisis');
+    })->name('hasil-analisis');
+    
+    Route::get(uri: '/penggunaan', action: function () {
+        return Inertia::render(component: 'Dashboard/Penggunaan');
+    })->name('penggunaan');
 });
 
 require __DIR__.'/auth.php';

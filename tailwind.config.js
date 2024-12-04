@@ -23,8 +23,10 @@ export default {
                 },
                 bw: {
                     primary: "#212121",
+                    secondary: "#687083",
                     icon: "#9AA2B1",
                     white: "#FFFFFF",
+                    surface: "#F9FAFB",
                 },
             },
         },

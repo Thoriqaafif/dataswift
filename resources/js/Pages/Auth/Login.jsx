@@ -36,7 +36,7 @@ export default function Login({ status, canResetPassword }) {
                 onSubmit={submit}
                 className="w-full flex flex-col gap-6 max-w-xl"
             >
-                <div className="flex flex-row justify-center items-center gap-1.5 box-border">
+                <div className="flex flex-row justify-center items-center gap-1.5">
                     <img src="images/logo.svg" alt="Logo" />
                     <p className="border-bw-primary text-3xl font-basic">
                         Dataswift
