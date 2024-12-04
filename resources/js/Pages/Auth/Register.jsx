@@ -1,117 +1,103 @@
-import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import Input from "@/Components/Input";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
     });
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset("password", "password_confirmation");
         };
     }, []);
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        post(route("register"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <div className="min-h-screen flex justify-center items-center">
+            <Head title="Daftar" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
+            <form
+                onSubmit={submit}
+                className="w-full flex flex-col gap-6 max-w-xl"
+            >
+                <div className="flex flex-row justify-center items-center gap-1.5 box-border">
+                    <img src="images/logo.svg" alt="Logo" />
+                    <p className="border-bw-primary text-3xl font-basic">
+                        Dataswift
+                    </p>
+                </div>
+                <span className="text-3xl font-bold">Daftar</span>
+                <div className="flex flex-col gap-4">
+                    <Input
                         id="name"
                         name="name"
+                        label="Nama"
+                        placeholder="Nama"
                         value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
+                        onChange={(e) => setData("name", e.target.value)}
+                        errors={errors.name}
                     />
-
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
+                    <Input
                         id="email"
                         type="email"
                         name="email"
+                        label="Email"
+                        placeholder="Alamat Email"
                         value={data.email}
-                        className="mt-1 block w-full"
                         autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
+                        onChange={(e) => setData("email", e.target.value)}
+                        errors={errors.email}
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
+                    <Input
                         id="password"
                         type="password"
                         name="password"
+                        label="Password"
+                        placeholder={"Password"}
                         value={data.password}
-                        className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
+                        onChange={(e) => setData("password", e.target.value)}
+                        errors={errors.password}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
+                    <Input
                         id="password_confirmation"
                         type="password"
                         name="password_confirmation"
+                        label="Konfirmasi Password"
+                        placeholder={"Password"}
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
+                        onChange={(e) =>
+                            setData("password_confirmation", e.target.value)
+                        }
+                        errors={errors.password_confirmation}
                     />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex justify-center gap-1">
+                    <span>Sudah punya akun?</span>
                     <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        href="/login"
+                        className="text-primary-600 font-semibold underline"
                     >
-                        Already registered?
+                        Masuk
                     </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
                 </div>
+
+                <PrimaryButton disabled={processing}>Daftar</PrimaryButton>
             </form>
-        </GuestLayout>
+        </div>
     );
 }
