@@ -4,12 +4,12 @@ import { Link } from "@inertiajs/react";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 
 import {
+    MdCreditCard,
     MdHome,
     MdInsertChart,
     MdLogout,
     MdPerson,
     MdSettings,
-    MdCreditCard, // Tambahkan ini
 } from "react-icons/md";
 
 const sidebarItems = [
@@ -32,7 +32,7 @@ const sidebarItems = [
 
 export default function DashboardLayout({ user, header, children }) {
     return (
-        <div className="flex min-h-screen bg-bw-surface text-bw-primary">
+        <div className="flex h-screen bg-bw-surface text-bw-primary">
             {/* sidebar */}
             <div className="flex flex-col gap-10 p-10 pt-14 bg-bw-white z-[1] h-screen fixed">
                 <Logo />
@@ -88,11 +88,11 @@ export default function DashboardLayout({ user, header, children }) {
                 </div>
             </div>
 
-            <div className="w-full flex-col ml-[280px]">
-                <div className="text-2xl font-bold px-10 py-6 w-full bg-bw-white shadow-md">
+            <div className="w-full flex-col ml-[280px] h-screen overflow-y-auto">
+                <div className="fixed top-0 text-2xl font-bold px-10 py-6 w-full bg-bw-white shadow-md">
                     {header}
                 </div>
-                <div className="px-10 py-6">{children}</div>
+                <div className="px-10 pt-32 pb-6 w-full h-full">{children}</div>
             </div>
         </div>
     );

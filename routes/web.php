@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResearchChatController;
 use App\Http\Controllers\ResearchController;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CreditController;
@@ -54,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::delete(uri: '/analisis/{research}', action: [ResearchController::class, 'destroy'])
     ->name('analisis.destroy');
     
+    Route::get(uri: '/analisis/{research}/chat', action: [ResearchController::class, 'showChat'])->name('analisis.chat');
+
     Route::get(uri: '/penggunaan', action: function () {
         return Inertia::render(component: 'Dashboard/Penggunaan');
     })->name('penggunaan');

@@ -27,6 +27,7 @@ export default {
                     icon: "#9AA2B1",
                     white: "#FFFFFF",
                     surface: "#F9FAFB",
+                    inline: "#D1D5DC",
                 },
                 success: {
                     600: "#8AB364",

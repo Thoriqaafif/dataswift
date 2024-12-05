@@ -3,7 +3,7 @@ import TableData from "@/Components/Table/TableData";
 import TableHeader from "@/Components/Table/TableHeader";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { MdDelete, MdLogin } from "react-icons/md";
+import { MdChat, MdDelete, MdLogin } from "react-icons/md";
 
 export default function Analisis({ auth, researches }) {
     const handleDelete = (id) => {
@@ -57,6 +57,15 @@ export default function Analisis({ auth, researches }) {
                                                 >
                                                     <MdDelete className="w-8 h-8 text-critical-600" />
                                                 </button>
+                                                <Link
+                                                    href={route(
+                                                        "analisis.chat",
+                                                        research.id
+                                                    )}
+                                                    as="button"
+                                                >
+                                                    <MdChat className="w-8 h-8 text-primary-600" />
+                                                </Link>
                                             </div>,
                                         ]}
                                     />

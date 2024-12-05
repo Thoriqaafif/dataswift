@@ -74,7 +74,7 @@ class ResearchController extends Controller
         $csv->setHeaderOffset(0); // First row as header
 
         $columns = array_map('trim', $csv->getHeader());
-
+ 
         // Trim
         $filteredRecords = collect($csv->getRecords())->map(function ($row) use ($columns) {
             return collect($row)->mapWithKeys(function ($value, $key) {
@@ -88,6 +88,10 @@ class ResearchController extends Controller
         $data = array_values(iterator_to_array($filteredRecords));
 
         return Inertia::render('Dashboard/Analisis/Show', ['research' => ['title' => $research->title, 'columns' => $columns, 'data' => $data]]);
+    }
+
+    public function showChat(Research $research) {
+        return Inertia::render('Dashboard/Analisis/Chat/Index', ['research' => $research]);
     }
 
     /**
