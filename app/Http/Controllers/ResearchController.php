@@ -107,6 +107,10 @@ class ResearchController extends Controller
         //
     }
 
+    public function showChat(Research $research) {
+        return Inertia::render('Dashboard/Analisis/Chat/Index', ['research' => $research]);
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
