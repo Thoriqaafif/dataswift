@@ -4,11 +4,9 @@ import { Link } from "@inertiajs/react";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 
 import {
-    MdDataUsage,
     MdHome,
     MdInsertChart,
     MdLogout,
-    MdOutlineExplore,
     MdPerson,
     MdSettings,
 } from "react-icons/md";
@@ -20,19 +18,9 @@ const sidebarItems = [
         href: "beranda",
     },
     {
-        Icon: MdOutlineExplore,
-        name: "Eksplor",
-        href: "eksplor",
-    },
-    {
         Icon: MdInsertChart,
         name: "Analisis",
         href: "analisis",
-    },
-    {
-        Icon: MdDataUsage,
-        name: "Penggunaan",
-        href: "penggunaan",
     },
 ];
 

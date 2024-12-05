@@ -60,8 +60,20 @@ class ResearchController extends Controller
     {
         $csv = Reader::createFromPath(storage_path('app/' . $research->file), 'r');
         $csv->setHeaderOffset(0); // First row as header
-        $data = array_values(iterator_to_array($csv->getRecords()));
-        $columns = $csv->getHeader();
+
+        $columns = array_map('trim', $csv->getHeader());
+
+        // Trim
+        $filteredRecords = collect($csv->getRecords())->map(function ($row) use ($columns) {
+            return collect($row)->mapWithKeys(function ($value, $key) {
+                return [trim($key) => trim($value)];
+            })->toArray();
+        })->filter(function ($row) {
+            return array_filter($row, function ($value) {
+                return !empty($value); 
+            });
+        });
+        $data = array_values(iterator_to_array($filteredRecords));
 
         return Inertia::render('Dashboard/Analisis/Show', ['research' => ['title' => $research->title, 'columns' => $columns, 'data' => $data]]);
     }

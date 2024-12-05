@@ -28,6 +28,9 @@ export default {
                     white: "#FFFFFF",
                     surface: "#F9FAFB",
                 },
+                success: {
+                    600: "#8AB364",
+                },
             },
         },
     },
