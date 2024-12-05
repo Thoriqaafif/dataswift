@@ -24,8 +24,19 @@ export default function Analisis({ auth, researches }) {
             <main>
                 <div className="flex flex-col gap-4 bg-bw-white p-6 rounded-md">
                     <div className="flex items-centter justify-between">
-                        Analisis yang sudah dilakukan:
-                        <CreateAnalisisDialog />
+                    <span>Analisis yang sudah dilakukan:</span>
+                        {auth.user.credit >= 10 ? (
+                            <CreateAnalisisDialog user={auth.user} />
+                        ) : (
+                            <div className="flex flex-col items-end">
+                                <p className="text-red-500 mb-2">
+                                    Kredit Anda di bawah 10, tidak dapat menambah penelitian.
+                                </p>
+                                <Link href={route('credit.index')} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    Tambah Kredit
+                                </Link>
+                            </div>
+                        )}
                     </div>
                     <table className="w-full">
                         <TableHeader

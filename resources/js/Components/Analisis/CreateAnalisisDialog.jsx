@@ -7,7 +7,7 @@ import FileInput from "../FileInput";
 import Input from "../Input";
 import PrimaryButton from "../PrimaryButton";
 
-export default function CreateAnalisisDialog() {
+export default function CreateAnalisisDialog({ user }) {
     const [open, setOpen] = useState(false);
     const { data, setData, post, processing, errors, reset } = useForm({
         title: "",

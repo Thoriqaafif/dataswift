@@ -46,23 +46,24 @@ class ResearchController extends Controller
         $user = $request->user();
 
         if ($user->credit < 10) {
-            return back()->withErrors(['credit' => 'Kredit tidak cukup untuk menambahkan penelitian.']);
+            return back()->withErrors(['credit' => 'Kredit tidak cukup untuk menambahkan penelitian. Minimal kredit yang dibutuhkan adalah 10.']);
         }
 
-        // Create a new research
+        // Simpan file
+        $path = $request->file('file')->store('uploads');
+
+        // Buat penelitian baru
         Research::create([
             'title' => $request->title,
             'file' => $path,
             'user_id' => $request->user()->id,
         ]);
 
+        // Kurangi kredit
+        $user->credit -= 10;
+        $user->save();
 
-            // Kurangi kredit
-    $user->credit -= 10;
-    $user->save();
-
-        // // Redirect to the index page
-        return redirect()->route('analisis');
+        return redirect()->route('analisis')->with('success', 'Penelitian berhasil ditambahkan.');
     }
 
     /**
@@ -74,7 +75,7 @@ class ResearchController extends Controller
         $csv->setHeaderOffset(0); // First row as header
 
         $columns = array_map('trim', $csv->getHeader());
- 
+
         // Trim
         $filteredRecords = collect($csv->getRecords())->map(function ($row) use ($columns) {
             return collect($row)->mapWithKeys(function ($value, $key) {
@@ -88,10 +89,6 @@ class ResearchController extends Controller
         $data = array_values(iterator_to_array($filteredRecords));
 
         return Inertia::render('Dashboard/Analisis/Show', ['research' => ['title' => $research->title, 'columns' => $columns, 'data' => $data]]);
-    }
-
-    public function showChat(Research $research) {
-        return Inertia::render('Dashboard/Analisis/Chat/Index', ['research' => $research]);
     }
 
     /**
