@@ -8,7 +8,6 @@ export default function Input({
     placeholder,
     type = "text",
     errors,
-    buttonType = "primary",
     ...rest
 }) {
     return (
@@ -21,13 +20,11 @@ export default function Input({
                 )}
                 <input
                     className={cn(
-                        buttonType === "primary" && [
-                            "border-none appearance-none",
-                            "px-5 py-3 rounded-md",
-                            "bg-primary-500 ring-1 ring-inset ring-bw-icon",
-                            "focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary-600",
-                            "placeholder:text-bw-icon",
-                        ],
+                        "border-none appearance-none",
+                        "px-5 py-3 rounded-md",
+                        "ring-1 ring-inset ring-bw-icon",
+                        "focus:outline-none focus:ring-1 focus:ring-inset focus:ring-primary-600",
+                        "placeholder:text-bw-icon",
                         className
                     )}
                     id={id}

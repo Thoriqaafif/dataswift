@@ -38,3 +38,4 @@ Route::get('/tes', function (Request $request) {
     ];
     return response()->json($response, 200);
 })->name('api.test');
+

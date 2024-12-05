@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -42,9 +43,13 @@ Route::middleware('auth')->group(function () {
         return Inertia::render(component: 'Dashboard/Eksplor');
     })->name('eksplor');
     
-    Route::get(uri: '/hasil-analisis', action: function () {
-        return Inertia::render(component: 'Dashboard/HasilAnalisis');
-    })->name('hasil-analisis');
+    Route::get(uri: '/analisis', action: [ResearchController::class, 'index'])
+    ->name('analisis');
+    Route::get(uri: '/analisis/{research}', action: [ResearchController::class, 'show'])
+    ->name('analisis.show');
+    
+    Route::post(uri: '/analisis', action: [ResearchController::class, 'store'])
+    ->name('analisis.store');
     
     Route::get(uri: '/penggunaan', action: function () {
         return Inertia::render(component: 'Dashboard/Penggunaan');

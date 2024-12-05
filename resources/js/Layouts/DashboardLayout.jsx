@@ -1,6 +1,8 @@
 import Logo from "@/Components/Logo";
 import { cn } from "@/Lib/utils";
 import { Link } from "@inertiajs/react";
+import { HiOutlineCurrencyDollar } from "react-icons/hi";
+
 import {
     MdDataUsage,
     MdHome,
@@ -24,8 +26,8 @@ const sidebarItems = [
     },
     {
         Icon: MdInsertChart,
-        name: "Hasil Analisis",
-        href: "hasil-analisis",
+        name: "Analisis",
+        href: "analisis",
     },
     {
         Icon: MdDataUsage,
@@ -36,9 +38,9 @@ const sidebarItems = [
 
 export default function DashboardLayout({ user, header, children }) {
     return (
-        <div className="flex min-h-screen bg-bw-surface">
+        <div className="flex min-h-screen bg-bw-surface text-bw-primary">
             {/* sidebar */}
-            <div className="flex flex-col gap-10 p-10 pt-14 bg-bw-white z-10">
+            <div className="flex flex-col gap-10 p-10 pt-14 bg-bw-white z-[1]">
                 <Logo />
                 <div className="flex flex-1 flex-col gap-4 overflow-y-auto">
                     {sidebarItems.map(({ Icon, name, href }) => (
@@ -48,7 +50,7 @@ export default function DashboardLayout({ user, header, children }) {
                                 route().current(href) &&
                                     "bg-primary-600 text-bw-white"
                             )}
-                            href={href}
+                            href={route(href)}
                             key={name}
                         >
                             <Icon className="w-5 h-5" />
@@ -56,12 +58,16 @@ export default function DashboardLayout({ user, header, children }) {
                         </Link>
                     ))}
                 </div>
+                <div className="flex items-center gap-2 px-4 py-2 font-semibold text-bw-secondary w-[200px]">
+                    <HiOutlineCurrencyDollar className="w-5 h-5" />
+                    <span>Credits: {user.credit}</span>
+                </div>
                 <div className="flex flex-col gap-4">
                     <Link
                         className={cn(
                             "flex items-center gap-2 px-4 py-2 font-semibold text-bw-secondary w-[200px] rounded-md"
                         )}
-                        href={"profile"}
+                        href={route("profile.edit")}
                     >
                         <MdPerson className="w-5 h-5" />
                         <span>Profil</span>
@@ -80,6 +86,7 @@ export default function DashboardLayout({ user, header, children }) {
                         )}
                         method="post"
                         href={route("logout")}
+                        as="button"
                     >
                         <MdLogout className="w-5 h-5" />
                         <span>Keluar</span>
