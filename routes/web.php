@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResearchController;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\CreditController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -56,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::get(uri: '/penggunaan', action: function () {
         return Inertia::render(component: 'Dashboard/Penggunaan');
     })->name('penggunaan');
+
+    Route::get('/credit', [CreditController::class, 'index'])->name('credit.index');
+    Route::post('/credit/purchase', [CreditController::class, 'purchase'])->name('credit.purchase');
 });
 
 require __DIR__.'/auth.php';

@@ -43,12 +43,23 @@ class ResearchController extends Controller
         // put file into storage
         $path = $request->file('file')->store('uploads');
 
+        $user = $request->user();
+
+        if ($user->credit < 10) {
+            return back()->withErrors(['credit' => 'Kredit tidak cukup untuk menambahkan penelitian.']);
+        }
+
         // Create a new research
         Research::create([
             'title' => $request->title,
             'file' => $path,
             'user_id' => $request->user()->id,
         ]);
+
+
+            // Kurangi kredit
+    $user->credit -= 10;
+    $user->save();
 
         // // Redirect to the index page
         return redirect()->route('analisis');

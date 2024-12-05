@@ -9,6 +9,7 @@ import {
     MdLogout,
     MdPerson,
     MdSettings,
+    MdCreditCard, // Tambahkan ini
 } from "react-icons/md";
 
 const sidebarItems = [
@@ -21,6 +22,11 @@ const sidebarItems = [
         Icon: MdInsertChart,
         name: "Analisis",
         href: "analisis",
+    },
+    {
+        Icon: MdCreditCard, // Ikon untuk Credit
+        name: "Credit", // Nama item sidebar
+        href: "credit.index", // Nama route yang sudah Anda definisikan
     },
 ];
 
