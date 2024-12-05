@@ -28,7 +28,7 @@ export default function DashboardLayout({ user, header, children }) {
     return (
         <div className="flex min-h-screen bg-bw-surface text-bw-primary">
             {/* sidebar */}
-            <div className="flex flex-col gap-10 p-10 pt-14 bg-bw-white z-[1]">
+            <div className="flex flex-col gap-10 p-10 pt-14 bg-bw-white z-[1] h-screen fixed">
                 <Logo />
                 <div className="flex flex-1 flex-col gap-4 overflow-y-auto">
                     {sidebarItems.map(({ Icon, name, href }) => (
@@ -82,7 +82,7 @@ export default function DashboardLayout({ user, header, children }) {
                 </div>
             </div>
 
-            <div className="w-full flex-col">
+            <div className="w-full flex-col ml-[280px]">
                 <div className="text-2xl font-bold px-10 py-6 w-full bg-bw-white shadow-md">
                     {header}
                 </div>

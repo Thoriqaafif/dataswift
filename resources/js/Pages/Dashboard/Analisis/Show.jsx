@@ -95,7 +95,10 @@ export default function Show({ auth, research }) {
     };
 
     return (
-        <DashboardLayout user={auth.user} header={research.title}>
+        <DashboardLayout
+            user={auth.user}
+            header={`Hasil Analisis ${research.title}`}
+        >
             <Head title={research.title} />
             <main className="flex flex-col gap-6">
                 <div className="flex flex-col gap-4 bg-bw-white p-6 rounded-md">

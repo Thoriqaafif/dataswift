@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function () {
     
     Route::post(uri: '/analisis', action: [ResearchController::class, 'store'])
     ->name('analisis.store');
+    Route::delete(uri: '/analisis/{research}', action: [ResearchController::class, 'destroy'])
+    ->name('analisis.destroy');
     
     Route::get(uri: '/penggunaan', action: function () {
         return Inertia::render(component: 'Dashboard/Penggunaan');

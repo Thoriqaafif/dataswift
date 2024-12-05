@@ -6,6 +6,7 @@ use App\Models\Research;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use League\Csv\Reader;
+use Storage;
 
 class ResearchController extends Controller
 {
@@ -99,6 +100,10 @@ class ResearchController extends Controller
      */
     public function destroy(Research $research)
     {
-        //
+        if ($research->file && Storage::exists($research->file)) {
+            Storage::delete($research->file);
+        }
+        
+        $research->delete();
     }
 }

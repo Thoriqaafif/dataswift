@@ -31,6 +31,9 @@ export default {
                 success: {
                     600: "#8AB364",
                 },
+                critical: {
+                    600: "#D84A4D",
+                },
             },
         },
     },

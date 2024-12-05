@@ -26,7 +26,6 @@ export default function CreateAnalisisDialog() {
         post(route("analisis.store"), {
             onSuccess: () => {
                 setOpen(false);
-                refetch();
                 reset();
             },
         });
